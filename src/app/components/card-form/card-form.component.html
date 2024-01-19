@@ -79,19 +79,13 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="Address1"
+                                placeholder="Line1"
                                 formControlName="line1"
                                 maxlength="10"
                             />
                         </div>
-                        <p-message
-                            severity="error"
-                            text="PAN number is required"
-                            *ngIf="
-                                gymGroup.get('panNo').hasError('required') &&
-                                gymGroup.get('panNo').touched
-                            "
-                        ></p-message>
+                       
+                        
                     </div>
 
                     <div class="field col-12 lg:col-4 md:col-12">
@@ -104,7 +98,7 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="Address2"
+                                placeholder="line2"
                                 [maxlength]="15"
                                 formControlName="line2"
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
