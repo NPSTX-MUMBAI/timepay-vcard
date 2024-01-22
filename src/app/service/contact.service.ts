@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,6 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class ContactService {
     constructor(private http: HttpClient) {}
+
+
+    InvalidForm(form: FormGroup) {
+      Object.keys(form.controls).forEach(key => {
+        const control = form.get(key);
+        control.markAsDirty(); // Mark each control as touched to trigger the error display
+      });
+    }
+
 
     getContact() {
         return new Promise((resolve, reject) => {

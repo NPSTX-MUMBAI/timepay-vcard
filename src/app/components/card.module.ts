@@ -3,12 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CardFormComponent } from './card-form/card-form.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { RouterModule } from '@angular/router';
-
-
-
-
-
 import { UiModule } from '../ui/ui.module';
+import { UtilityModule } from './utility/utility.module';
+
 
 type PathMatch = 'full' | 'prefix';
 
@@ -20,6 +17,6 @@ let router = [
 
 @NgModule({
     declarations: [CardFormComponent, CardListComponent],
-    imports: [CommonModule,UiModule, RouterModule.forChild(router)],
+    imports: [CommonModule,UiModule, RouterModule.forChild(router) , UtilityModule],
 })
 export class CardModule {}
