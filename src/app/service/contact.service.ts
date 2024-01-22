@@ -59,4 +59,18 @@ export class ContactService {
                 });
         });
     }
+
+    removeContact(id: string) {
+      return new Promise((resolve, reject) => {
+          this.http
+              .delete(`${environment.apiUrl}vcard/removeContact/${id}`)
+              .subscribe((res: any) => {
+                  if (res.status) {
+                      resolve(res);
+                  } else {
+                      reject(res);
+                  }
+              });
+      });
+  }
 }

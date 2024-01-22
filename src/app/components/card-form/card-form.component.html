@@ -108,7 +108,7 @@
                                 pInputText
                                 placeholder="CompanyName"
                                 formControlName="companyName"
-                                maxlength="10"
+                        
                             />
                         </div>
                         <app-validation
@@ -128,13 +128,13 @@
                             <input
                                 pInputText
                                 placeholder="JobTitle"
-                                [maxlength]="15"
-                                formControlName="jobtitle"
+                              
+                                formControlName="jobTitle"
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />
                         </div>
                         <app-validation
-                            [control]="cardGroup.get('jobtitle')"
+                            [control]="cardGroup.get('jobTitle')"
                             [controleName]="'Job Title'"
                         ></app-validation>
                     </div>
@@ -149,7 +149,7 @@
                             <input
                                 pInputText
                                 placeholder="Address"
-                                [maxlength]="15"
+                    
                                 formControlName="address"
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />

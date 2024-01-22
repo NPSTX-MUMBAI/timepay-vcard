@@ -8,7 +8,7 @@
         [tableStyle]="{ 'min-width': '100rem' }"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="['firstName', 'lastName', 'phoneNumber' , 'email']"
+        [globalFilterFields]="['firstName', 'lastName', 'phoneNumber', 'email']"
     >
         <ng-template pTemplate="caption">
             <div class="flex">
@@ -101,7 +101,9 @@
                     <button
                         pButton
                         type="button"
-                        (click)="menu.toggle($event)"
+                        (click)="
+                            clickHandler(customer.userId); menu.toggle($event)
+                        "
                         icon="pi pi-ellipsis-v"
                     ></button>
                 </td>
@@ -121,3 +123,17 @@
     </p-table>
 </div>
 <p-menu #menu [model]="items" [popup]="true"></p-menu>
+
+<p-dialog
+    header="QR Code"
+    [(visible)]="visible"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <img [src]="qrCodeString" alt="img" />
+    <!-- <p class="m-0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p> -->
+</p-dialog>

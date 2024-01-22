@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LogarithmicScale } from 'chart.js';
 import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ContactService } from 'src/app/service/contact.service';
@@ -14,8 +15,9 @@ export class CardListComponent implements OnInit {
 
     items: MenuItem[] | undefined;
     @ViewChild('menu') menu: any;
+    qrCodeString: string = '';
 
-    loading: boolean = true;
+    visible: boolean = false;
 
     constructor(
         private router: Router,
@@ -26,26 +28,59 @@ export class CardListComponent implements OnInit {
         this.router.navigate(['card/cardform']);
     }
 
-    ngOnInit() {
-        this.getContact();
+    showDialog(userId: string) {
+        console.log(userId);
+
+        this.contactService
+            .getQrcode({ userId: userId })
+            .then((res: any) => {
+                this.qrCodeString = res.data;
+                console.log(this.qrCodeString);
+                this.visible = true;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    removeContact(id: string) {
+        this.contactService
+            .removeContact(id)
+            .then((res) => {
+                this.getContact();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    clickHandler(userId: string) {
         this.items = [
             {
                 label: 'Options',
                 items: [
                     {
                         label: 'QR Code',
-                        icon: 'pi pi-refresh',
-                        command: () => {},
+                        icon: 'pi pi-qrcode',
+                        command: () => {
+                            this.showDialog(userId);
+                        },
                     },
                     {
-                        label: 'Delete',
+                        label: 'Remove',
                         icon: 'pi pi-times',
-                        command: () => {},
+                        command: () => {
+                            this.removeContact(userId);
+                        },
                     },
                 ],
             },
             {},
         ];
+    }
+
+    ngOnInit() {
+        this.getContact();
     }
 
     async getContact() {
