@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LogarithmicScale } from 'chart.js';
-import { MenuItem } from 'primeng/api';
-import { Table } from 'primeng/table';
+import { MenuItem, MessageService } from 'primeng/api';
 import { ContactService } from 'src/app/service/contact.service';
 
 @Component({
@@ -21,7 +19,8 @@ export class CardListComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private contactService: ContactService
+        private contactService: ContactService,
+        private messagSrv: MessageService
     ) {}
 
     AddCard() {
@@ -46,11 +45,21 @@ export class CardListComponent implements OnInit {
     removeContact(id: string) {
         this.contactService
             .removeContact(id)
-            .then((res) => {
+            .then((res: any) => {
                 this.getContact();
+                    this.messagSrv.add({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `${res.msg}`,
+                    });
             })
             .catch((error) => {
                 console.log(error);
+                this.messagSrv.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: `${error.msg}`,
+                });
             });
     }
 

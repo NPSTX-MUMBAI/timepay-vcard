@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ContactService } from 'src/app/service/contact.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class CardFormComponent {
     constructor(
         private fb: FormBuilder,
         private contactSrv: ContactService,
-        private router: Router
+        private router: Router,
+        private messagSrv: MessageService
     ) {
         this.cardGroup = fb.group({
             firstName: ['', Validators.required],
@@ -35,10 +37,15 @@ export class CardFormComponent {
             console.log(this.cardGroup.value);
             this.contactSrv
                 .createContact(this.cardGroup.value)
-                .then((res) => {
+                .then((res: any) => {
                     this.router.navigate(['card/cardlist']);
                 })
                 .catch((err) => {
+                    this.messagSrv.add({
+                        severity: 'error',
+                        summary : 'Errr',
+                        detail: `${err.msg}`,
+                    });
                     console.log(err);
                 });
         }

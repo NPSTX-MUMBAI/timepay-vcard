@@ -17,16 +17,18 @@
                                 *</span
                             ></label
                         >
-                        <input
-                            #myInputField
-                            pInputText
-                            id="firstname"
-                            type="text"
-                            formControlName="firstName"
-                            placeholder="Enter first name"
-                            pattern="^[A-Za-z ]{2,}$"
-                            maxlength="30"
-                        />
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-user"></i>
+                            </span>
+                            <input
+                                pInputText
+                                placeholder="First Name"
+                                formControlName="firstName"
+                                maxlength="45"
+                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
+                            />
+                        </div>
                         <app-validation
                             [control]="cardGroup.get('firstName')"
                             [controleName]="'firstName'"
@@ -64,8 +66,6 @@
                                 formControlName="email"
                                 maxlength="45"
                             />
-
-                            <!-- oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" -->
                         </div>
                         <app-validation
                             [control]="cardGroup.get('email')"
@@ -74,7 +74,9 @@
                     </div>
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2" htmlFor="username"
-                            >phone NO<span class="text-red-600"> *</span></label
+                            >Phone NUmber<span class="text-red-600">
+                                *</span
+                            ></label
                         >
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
@@ -82,7 +84,7 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="phone NO"
+                                placeholder="Phone Number"
                                 formControlName="phoneNumber"
                                 maxlength="10"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
@@ -108,7 +110,6 @@
                                 pInputText
                                 placeholder="CompanyName"
                                 formControlName="companyName"
-                        
                             />
                         </div>
                         <app-validation
@@ -128,9 +129,7 @@
                             <input
                                 pInputText
                                 placeholder="JobTitle"
-                              
                                 formControlName="jobTitle"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />
                         </div>
                         <app-validation
@@ -149,9 +148,7 @@
                             <input
                                 pInputText
                                 placeholder="Address"
-                    
                                 formControlName="address"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />
                         </div>
                         <app-validation
@@ -167,3 +164,5 @@
         </div>
     </form>
 </div>
+
+<p-toast></p-toast>
