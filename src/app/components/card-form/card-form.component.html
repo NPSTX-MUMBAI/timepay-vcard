@@ -74,7 +74,7 @@
                     </div>
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2" htmlFor="username"
-                            >Phone NUmber<span class="text-red-600">
+                            >Phone Number<span class="text-red-600">
                                 *</span
                             ></label
                         >
@@ -156,6 +156,7 @@
                             [controleName]="'Address'"
                         ></app-validation>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -166,3 +167,10 @@
 </div>
 
 <p-toast></p-toast>
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <!-- <p class="m-0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p> -->
+</p-dialog>
