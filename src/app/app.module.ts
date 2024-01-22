@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import{TableModule} from 'primeng/table'
 import { CardModule } from './components/card.module';
 import { ButtonModule } from 'primeng/button';
-import { UiModule } from './ui/ui.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,7 @@ import { UiModule } from './ui/ui.module';
         TableModule,
         CardModule,
         ButtonModule,
-        UiModule
+        HttpClientModule
     ],
     providers: [
     ],
