@@ -15,7 +15,7 @@ export class CardFormComponent {
             firstName: ['', Validators.required],
             lastName: [''],
             email: ['', [Validators.required, Validators.email]],
-            phoneNo: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required]],
             address: ['', Validators.required],
             jobtitle: ['', [Validators.required]],
             companyName: ['', [Validators.required]],

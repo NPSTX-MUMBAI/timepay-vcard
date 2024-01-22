@@ -83,13 +83,13 @@
                             <input
                                 pInputText
                                 placeholder="phone NO"
-                                formControlName="phoneNo"
+                                formControlName="phoneNumber"
                                 maxlength="10"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                             />
                         </div>
                         <app-validation
-                            [control]="cardGroup.get('phoneNo')"
+                            [control]="cardGroup.get('phoneNumber')"
                             [controleName]="'Phone Number'"
                         ></app-validation>
                     </div>
