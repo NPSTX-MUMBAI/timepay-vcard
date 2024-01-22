@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ContactService } from 'src/app/service/contact.service';
 
 @Component({
@@ -10,14 +12,19 @@ import { ContactService } from 'src/app/service/contact.service';
 export class CardFormComponent {
     cardGroup: FormGroup;
     submitted = false;
-    constructor(private fb: FormBuilder, private contactSrv: ContactService) {
+    constructor(
+        private fb: FormBuilder,
+        private contactSrv: ContactService,
+        private router: Router,
+        private messagSrv: MessageService
+    ) {
         this.cardGroup = fb.group({
             firstName: ['', Validators.required],
             lastName: [''],
             email: ['', [Validators.required, Validators.email]],
-            phoneNo: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required]],
             address: ['', Validators.required],
-            jobtitle: ['', [Validators.required]],
+            jobTitle: ['', [Validators.required]],
             companyName: ['', [Validators.required]],
         });
     }
@@ -28,7 +35,19 @@ export class CardFormComponent {
             return this.contactSrv.InvalidForm(this.cardGroup);
         } else {
             console.log(this.cardGroup.value);
-            // this.contactSrv.createContact(this.cardGroup.va)
+            this.contactSrv
+                .createContact(this.cardGroup.value)
+                .then((res: any) => {
+                    this.router.navigate(['card/cardlist']);
+                })
+                .catch((err) => {
+                    this.messagSrv.add({
+                        severity: 'error',
+                        summary : 'Errr',
+                        detail: `${err.msg}`,
+                    });
+                    console.log(err);
+                });
         }
     }
 }

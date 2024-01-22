@@ -24,10 +24,8 @@
                                 placeholder="First Name"
                                 formControlName="firstName"
                                 maxlength="45"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" 
+                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
                             />
-
-                          
                         </div>
                         <app-validation
                             [control]="cardGroup.get('firstName')"
@@ -66,8 +64,6 @@
                                 formControlName="email"
                                 maxlength="45"
                             />
-
-                            <!-- oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" -->
                         </div>
                         <app-validation
                             [control]="cardGroup.get('email')"
@@ -76,7 +72,9 @@
                     </div>
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2" htmlFor="username"
-                            >phone NO<span class="text-red-600"> *</span></label
+                            >Phone NUmber<span class="text-red-600">
+                                *</span
+                            ></label
                         >
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
@@ -84,14 +82,14 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="phone NO"
-                                formControlName="phoneNo"
+                                placeholder="Phone Number"
+                                formControlName="phoneNumber"
                                 maxlength="10"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                             />
                         </div>
                         <app-validation
-                            [control]="cardGroup.get('phoneNo')"
+                            [control]="cardGroup.get('phoneNumber')"
                             [controleName]="'Phone Number'"
                         ></app-validation>
                     </div>
@@ -110,7 +108,6 @@
                                 pInputText
                                 placeholder="CompanyName"
                                 formControlName="companyName"
-                               
                             />
                         </div>
                         <app-validation
@@ -130,13 +127,11 @@
                             <input
                                 pInputText
                                 placeholder="JobTitle"
-                               
-                                formControlName="jobtitle"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
+                                formControlName="jobTitle"
                             />
                         </div>
                         <app-validation
-                            [control]="cardGroup.get('jobtitle')"
+                            [control]="cardGroup.get('jobTitle')"
                             [controleName]="'Job Title'"
                         ></app-validation>
                     </div>
@@ -151,9 +146,7 @@
                             <input
                                 pInputText
                                 placeholder="Address"
-                                
                                 formControlName="address"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />
                         </div>
                         <app-validation
@@ -169,3 +162,5 @@
         </div>
     </form>
 </div>
+
+<p-toast></p-toast>

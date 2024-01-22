@@ -62,6 +62,7 @@ import { ChipModule } from 'primeng/chip';
 
 
 import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -142,5 +143,6 @@ const arrays = [
 @NgModule({
     imports: arrays,
     exports: arrays,
+    providers: [MessageService]
 })
 export class UiModule { }
