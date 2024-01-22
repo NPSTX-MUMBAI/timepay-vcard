@@ -30,6 +30,7 @@ export class CardListComponent {
   
   update():void {
     
+    
    
     // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
 }
@@ -514,6 +515,11 @@ delete(){}
               default:
                   return null
       }
+  }
+  visible: boolean = false;
+
+  showDialog() {
+      this.visible = true;
   }
 
 }
