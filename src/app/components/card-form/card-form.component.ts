@@ -27,6 +27,7 @@ export class CardFormComponent {
             address: ['', Validators.required],
             jobTitle: ['', [Validators.required]],
             companyName: ['', [Validators.required]],
+          
             other: this.fb.array([]),
         });
     }
@@ -55,7 +56,8 @@ export class CardFormComponent {
         }
     }
 
-    showDialog() {
+      showDialog() {
         this.visible = true;
     }
+    onSubmit(){}
 }

@@ -16,7 +16,7 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             {
              items: [
-                    { label: 'V-Card', icon: 'pi pi-fw pi-home', routerLink: ['card/cardlist'] }
+                    { label: 'V-Card', icon: 'pi pi-credit-card', routerLink: ['card/cardlist'] }
                 ]
             },
            

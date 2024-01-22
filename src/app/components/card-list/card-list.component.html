@@ -76,8 +76,9 @@
                 </td>
                 <td>
                     <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.state.code" style="width: 20px" /> -->
-
-                    {{ customer.lastName ? customer.lastName : "-" }}
+                    <span class="ml-1 vertical-align-middle">{{
+                        customer.lastName
+                    }}</span>
                 </td>
 
                 <td>
