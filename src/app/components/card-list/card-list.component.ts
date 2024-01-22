@@ -28,13 +28,11 @@ export class CardListComponent implements OnInit {
     }
 
     showDialog(userId: string) {
-        console.log(userId);
 
         this.contactService
             .getQrcode({ userId: userId })
             .then((res: any) => {
                 this.qrCodeString = res.data;
-                console.log(this.qrCodeString);
                 this.visible = true;
             })
             .catch((error) => {

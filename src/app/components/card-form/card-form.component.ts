@@ -12,6 +12,7 @@ import { ContactService } from 'src/app/service/contact.service';
 export class CardFormComponent {
     cardGroup: FormGroup;
     submitted = false;
+    visible = false;
     constructor(
         private fb: FormBuilder,
         private contactSrv: ContactService,
@@ -26,6 +27,7 @@ export class CardFormComponent {
             address: ['', Validators.required],
             jobTitle: ['', [Validators.required]],
             companyName: ['', [Validators.required]],
+            other: this.fb.array([]),
         });
     }
 
@@ -34,7 +36,9 @@ export class CardFormComponent {
         if (this.cardGroup.invalid) {
             return this.contactSrv.InvalidForm(this.cardGroup);
         } else {
-            console.log(this.cardGroup.value);
+            if (this.cardGroup.value.other?.length == 0) {
+                delete this.cardGroup.value.other;
+            }
             this.contactSrv
                 .createContact(this.cardGroup.value)
                 .then((res: any) => {
@@ -43,11 +47,15 @@ export class CardFormComponent {
                 .catch((err) => {
                     this.messagSrv.add({
                         severity: 'error',
-                        summary : 'Errr',
+                        summary: 'Errr',
                         detail: `${err.msg}`,
                     });
                     console.log(err);
                 });
         }
+    }
+
+    showDialog() {
+        this.visible = true;
     }
 }
