@@ -6,30 +6,58 @@
 ></p-button>
 <br /><br />
 <div class="container card">
-    <form [formGroup]="gymGroup">
+    <form [formGroup]="cardGroup">
         <h5>Card Details</h5>
     <div class="flex gap-5 flex-column-reverse md:flex-row">
             <div class="flex-auto p-fluid">
                 <div class="formgrid grid">
+                   
+
+
+
                     <div class="field col-12 lg:col-4 md:col-12">
-                        <label for="firstname2" htmlFor="username">
-                            First Name<span class="text-red-600">
-                                *</span
-                            ></label
-                        >
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
-                            </span>
-                            <input
-                                pInputText
-                                placeholder="First NAME"
-                                formControlName="firstName"
-                                maxlength="45"
-                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
-                            />
+                        <label htmlFor="firstname">First Name<span class="text-red-600"> *</span></label>
+     
+                        <input #myInputField pInputText id="firstname" type="text" formControlName="firstName"
+                            placeholder="Enter first name" pattern="^[A-Za-z ]{2,}$" maxlength="30" />
+                        <div *ngIf="myInputField.value === '' && submitted" class="error-message" style="
+                            color: red;
+                            text-align: left;
+                            margin-top: 6px;
+                            font-size: 14px;
+                        ">
+                            Enter first name!
+     
+                        </div>
+                        <div *ngIf="
+                                cardGroup.controls['firstName'].touched &&
+                                cardGroup.controls['firstName'].errors
+                            ">
+                            <div *ngIf="
+                                    cardGroup.controls['firstName'].hasError(
+                                        'required'
+                                    )&& !submitted
+                                " style="
+                                    color: red;
+                                    text-align: left;
+                                    margin-top: 6px;
+                                ">
+                                Enter first name!
+                            </div>
+                            <div *ngIf="
+                                    cardGroup.controls['firstName'].hasError(
+                                        'pattern'
+                                    )
+                                " style="
+                                    color: red;
+                                    text-align: left;
+                                    margin-top: 6px;
+                                ">
+                                Enter a valid name!
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2" htmlFor="username"
                             >Last Name<span class="text-red-600">
@@ -51,7 +79,28 @@
                     </div>
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2" htmlFor="username"
-                            >MOBILE NO<span class="text-red-600">
+                            >Email<span class="text-red-600">
+                                *</span
+                            ></label
+                        >
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-user"></i>
+                            </span>
+                            <input
+                                pInputText
+                                placeholder="Email"
+                                formControlName="email"
+                                maxlength="45"
+                            />
+
+                            <!-- oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" -->
+
+                        </div>
+                    </div>
+                    <div class="field col-12 lg:col-4 md:col-12">
+                        <label for="firstname2" htmlFor="username"
+                            >phone NO<span class="text-red-600">
                                 *</span
                             ></label
                         >
@@ -61,8 +110,8 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="MOBILE NO"
-                                formControlName="mobileNo"
+                                placeholder="phone NO"
+                                formControlName="phoneNo"
                                 maxlength="10"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                             />
@@ -71,7 +120,7 @@
 
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="panNo"
-                            >Address1<span class="text-red-600">*</span></label
+                            >Company Name<span class="text-red-600">*</span></label
                         >
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
@@ -79,8 +128,8 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="Line1"
-                                formControlName="line1"
+                                placeholder="CompanyName"
+                                formControlName="companyName"
                                 maxlength="10"
                             />
                         </div>
@@ -90,7 +139,7 @@
 
                     <div class="field col-12 lg:col-4 md:col-12">
                         <label for="firstname2"
-                            >Address2<span class="text-red-600"> *</span></label
+                            >JobTitle<span class="text-red-600"> *</span></label
                         >
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
@@ -98,17 +147,34 @@
                             </span>
                             <input
                                 pInputText
-                                placeholder="line2"
+                                placeholder="JobTitle"
                                 [maxlength]="15"
-                                formControlName="line2"
+                                formControlName="jobtitle"
                                 oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                             />
                         </div>
                     </div>
-                </div>
+                    <div class="field col-12 lg:col-4 md:col-12">
+                        <label for="firstname2"
+                            >Address<span class="text-red-600"> *</span></label
+                        >
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-envelope"></i>
+                            </span>
+                            <input
+                                pInputText
+                                placeholder="Address"
+                                [maxlength]="15"
+                                formControlName="address"
+                                oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
+                            />
+                        </div>
+                    </div>
+                </div>  
             </div>
         </div>
-        <div class="fi" style="text-align: center">
+        <div style="text-align: center">
             <p-button label="Submit" (click)="onSave()"></p-button>
         </div>
     </form>

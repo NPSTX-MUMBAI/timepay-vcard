@@ -8,15 +8,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CardFormComponent {
   
-  gymGroup: FormGroup
-  gymId:any
+  cardGroup: FormGroup
+  submitted=false
   constructor(private fb: FormBuilder ,)  {
-     this.gymGroup = fb.group({
+     this.cardGroup = fb.group({
       firstName: ['', Validators.required],
-      lastName: ['' , [Validators.required , Validators.email ,]],
-       mobileNo: ['' ,[Validators.required , ]],
-       line1: ['', Validators.required,],
-       line2: ['', [Validators.required, ]],
+      lastName: ['', Validators.required],
+      email: ['' , [Validators.required , Validators.email ,]],
+      phoneNo: ['' ,[Validators.required , ]],
+      address: ['', Validators.required,],
+       jobtitle: ['', [Validators.required, ]],
+       companyName: ['', [Validators.required, ]],
       
       
   });
@@ -29,6 +31,8 @@ export class CardFormComponent {
    
  /// Button save 
  onSave() {
+  this.submitted=true
+  console.log(this.cardGroup.value);
   
     
  }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -13,6 +14,8 @@ export class CardListComponent {
   representatives!: any[];
 
   statuses!: any[];
+  items: MenuItem[] | undefined;
+  @ViewChild('menu') menu :any
 
   loading: boolean = true;
 
@@ -23,7 +26,41 @@ export class CardListComponent {
   AddCard(){
     this.router.navigate(['card/cardform']);
   }
+
+  
+  update():void {
+    
+   
+    // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
+}
+delete(){}
+
   ngOnInit() {
+    this.items = [
+        {
+            label: 'Options',
+            items: [
+                {
+                    label: 'QR Code',
+                    icon: 'pi pi-refresh',
+                    command: () => {
+                        this.update();
+                    }
+                },
+                {
+                    label: 'Delete',
+                    icon: 'pi pi-times',
+                    command: () => {
+                        this.delete();
+                    }
+                }
+            ]
+        },
+        {
+            
+        }
+    ];
+    
       this.agents = [
           {
               "id": 1022,

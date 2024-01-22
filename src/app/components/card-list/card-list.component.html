@@ -1,14 +1,12 @@
 
 <div class="card">
-   
-      <p-table
+   <p-table
        #dt1
        [value]="agents"
        dataKey="id"
        [rows]="10"
        [showCurrentPageReport]="true"
-       [rowsPerPageOptions]="[10, 25, 50]"
-       [paginatorPosition]="'top'"
+     
        [paginator]="true"
        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
        [globalFilterFields]="['name', 'state.name', 'status']"
@@ -31,28 +29,52 @@
                <th style="min-width:15rem">
                    <div class="flex align-items-center">
                        First Name
-                       <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                       <!-- <p-columnFilter type="text" field="name" display="menu"></p-columnFilter> -->
                    </div>
                </th>
                <th style="min-width:15rem">
                    <div class="flex align-items-center">
                        Last Name
-                       <p-columnFilter type="text" field="state.name" display="menu"></p-columnFilter>
+                       <!-- <p-columnFilter type="text" field="state.name" display="menu"></p-columnFilter> -->
                    </div>
                </th>
                <th style="min-width:10rem">
                    <div class="flex align-items-center">
-                       Mobile No
-                       <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+                       Email
+                       <!-- <p-columnFilter type="date" field="date" display="menu"></p-columnFilter> -->
                    </div>
                </th>
                <th style="min-width:10rem">
                    <div class="flex align-items-center">
-                      Cashbacks
-                       <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter>
+                       phone NO
+                       <!-- <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter> -->
                    </div>
                </th>
                <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                    Company Name
+                    <!-- <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter> -->
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                    Job Title
+                    <!-- <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter> -->
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                     Address
+                    <!-- <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter> -->
+                </div>
+            </th>
+            <th style="min-width:10rem">
+                <div class="flex align-items-center">
+                     Action
+                    <!-- <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter> -->
+                </div>
+            </th>
+               <!-- <th style="min-width:10rem">
                    <div class="flex align-items-center">
                        Status
                        <p-columnFilter field="status" matchMode="equals" display="menu">
@@ -65,7 +87,7 @@
                            </ng-template>
                        </p-columnFilter>
                    </div>
-               </th>
+               </th> -->
                <!-- <th style="width: 3rem">
                    <div class="flex align-items-center">
                        Verified
@@ -91,8 +113,21 @@
                    {{ customer.cashback | currency: 'INR':'symbol' }}
                </td>
                <td>
+                {{ customer.name }}
+            </td>
+            <td>
+                {{ customer.name }}
+            </td>
+            <td>
+                {{ customer.name }}
+            </td>
+            
+            <td>
+                <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-ellipsis-v" ></button>
+            </td>
+               <!-- <td>
                    <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)"></p-tag>
-               </td>
+               </td> -->
                <!-- <td class="text-center">
                    <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
                </td> -->
@@ -105,6 +140,7 @@
        </ng-template>
    </p-table>
 </div>
+<p-menu #menu [model]="items" [popup]="true"></p-menu>
 
 
 
