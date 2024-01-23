@@ -75,7 +75,7 @@ export class CardListComponent implements OnInit {
                     },
                     {
                         label: 'Remove',
-                        icon: 'pi pi-times',
+                        icon: 'pi pi-trash',
                         command: () => {
                             this.removeContact(userId);
                         },
