@@ -1,22 +1,19 @@
-
 <div class="container card">
-    <div class="flex justify-content-between pb-3">
-        <div class="flex align-items-center gap-4">
-            <p-button
-                class="back-button"
-                [routerLink]="['/card/cardlist']"
-                icon="pi pi-arrow-left"
-                nzShape="circle"
-            ></p-button>
-            <h5>Card Details</h5>
-        </div>
-        <div>
+    <div class="flex align-items-center gap-4">
+        <p-button
+            class="back-button"
+            [routerLink]="['/card/cardlist']"
+            icon="pi pi-arrow-left"
+            nzShape="circle"
+        ></p-button>
+        <h5>Card Details</h5>
+    </div>
+    <!-- <div>
             <p-button
                 (click)="showDialog()"
                 label="Add Custom Field"
             ></p-button>
-        </div>
-    </div>
+        </div> -->
     <form [formGroup]="cardGroup">
         <div class="flex gap-5 flex-column-reverse md:flex-row">
             <div class="flex-auto p-fluid">
@@ -219,7 +216,7 @@
     </form>
 </div>
 
-<p-dialog
+<!-- <p-dialog
     header="Custom Field"
     [(visible)]="visible"
     [modal]="true"
@@ -271,5 +268,5 @@
             <p-button label="Submit" (click)="onSubmit()"></p-button>
         </div>
     </form>
-</p-dialog>
+</p-dialog> -->
 <p-toast></p-toast>

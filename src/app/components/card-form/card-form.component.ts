@@ -45,16 +45,7 @@ export class CardFormComponent {
 
     /// Button save
     onSave() {
-        // const erroField = this.cardGroup.controls['other'] as FormArray;
-        // console.log(erroField.controls);
-        const frormArray: any = this.cardGroup.controls['other'] as FormArray;
-        if (this.cardGroup.invalid || frormArray.controls.length > 0) {
-            frormArray.controls.forEach((form) => {
-                if (form.invalid) {
-                    this.contactSrv.InvalidForm(form);
-                }
-            });
-            console.log(this.cardGroup.value);
+        if (this.cardGroup.invalid) {
             return this.contactSrv.InvalidForm(this.cardGroup);
         } else {
             this.contactSrv
