@@ -10,12 +10,12 @@
             ></p-button>
             <h5>Card Details</h5>
         </div>
-        <div>
+        <!-- <div>
             <p-button
                 (click)="showDialog()"
                 label="Add Custom Field"
             ></p-button>
-        </div>
+        </div> -->
     </div>
     <form [formGroup]="cardGroup">
         <div class="flex gap-5 flex-column-reverse md:flex-row">
@@ -197,9 +197,10 @@
                                 style="cursor: pointer"
                                 class="p-inputgroup-addon"
                             >
-                                <i class="pi pi-trash" (click)="remove(i)"></i>
+                                <i class="pi pi-trash" [style.color]="iconClicked ? 'black' : 'red'" (click)="remove(i)"></i>
                             </span>
                         </div>
+                        
                         <app-validation
                             [control]="item.get('value')"
                             [controleName]="'value'"
