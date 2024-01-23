@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { cU } from '@fullcalendar/core/internal-common';
 import { MessageService } from 'primeng/api';
 import { ContactService } from 'src/app/service/contact.service';
 
@@ -11,6 +12,7 @@ import { ContactService } from 'src/app/service/contact.service';
 })
 export class CardFormComponent {
     cardGroup: FormGroup;
+    customFormGroup: FormGroup;
     submitted = false;
     visible = false;
     constructor(
@@ -27,19 +29,34 @@ export class CardFormComponent {
             address: ['', Validators.required],
             jobTitle: ['', [Validators.required]],
             companyName: ['', [Validators.required]],
-          
+
             other: this.fb.array([]),
         });
+
+        this.customFormGroup = fb.group({
+            label: ['', Validators.required],
+            value: [''],
+        });
+    }
+
+    get OtherFieldsElementCntr() {
+        return this.cardGroup.controls['other'] as FormArray;
     }
 
     /// Button save
     onSave() {
-        if (this.cardGroup.invalid) {
+        // const erroField = this.cardGroup.controls['other'] as FormArray;
+        // console.log(erroField.controls);
+        const frormArray: any = this.cardGroup.controls['other'] as FormArray;
+        if (this.cardGroup.invalid || frormArray.controls.length > 0) {
+            frormArray.controls.forEach((form) => {
+                if (form.invalid) {
+                    this.contactSrv.InvalidForm(form);
+                }
+            });
+            console.log(this.cardGroup.value);
             return this.contactSrv.InvalidForm(this.cardGroup);
         } else {
-            if (this.cardGroup.value.other?.length == 0) {
-                delete this.cardGroup.value.other;
-            }
             this.contactSrv
                 .createContact(this.cardGroup.value)
                 .then((res: any) => {
@@ -56,8 +73,31 @@ export class CardFormComponent {
         }
     }
 
-      showDialog() {
+    showDialog() {
         this.visible = true;
     }
-    onSubmit(){}
+    onSubmit() {
+        if (this.customFormGroup.invalid) {
+            return this.contactSrv.InvalidForm(this.customFormGroup);
+        } else {
+            const customfield = this.cardGroup.get('other') as FormArray;
+            customfield.push(
+                this.fb.group({
+                    customeLabel: [this.customFormGroup.get('label').value],
+                    value: [
+                        this.customFormGroup.get('value').value,
+                        Validators.required,
+                    ],
+                })
+            );
+
+            this.customFormGroup.reset();
+            this.visible = false;
+        }
+    }
+
+    remove(index: number) {
+        const customfield = this.cardGroup.get('other') as FormArray;
+        customfield.removeAt(index);
+    }
 }
