@@ -19,8 +19,8 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                         import('./components/card.module').then(
                             (m) => m.CardModule
                         ),
-                    component: AppLayoutComponent,
-                    // canDeactivate: [AuthGuardGuard],
+                    // component: AppLayoutComponent,
+                    // canDeactivate: [AuthGuardGuard], 
                 },
 
                 { path: '**', redirectTo: '/notfound' },

@@ -28,7 +28,6 @@ export class CardListComponent implements OnInit {
     }
 
     showDialog(userId: string) {
-
         this.contactService
             .getQrcode({ userId: userId })
             .then((res: any) => {
@@ -45,14 +44,13 @@ export class CardListComponent implements OnInit {
             .removeContact(id)
             .then((res: any) => {
                 this.getContact();
-                    this.messagSrv.add({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: `${res.msg}`,
-                    });
+                this.messagSrv.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: `${res.msg}`,
+                });
             })
             .catch((error) => {
-                console.log(error);
                 this.messagSrv.add({
                     severity: 'error',
                     summary: 'Error',
@@ -96,8 +94,12 @@ export class CardListComponent implements OnInit {
             .then((res: any) => {
                 this.contacts = res.data;
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                this.messagSrv.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: `${error.msg}`,
+                });
             });
     }
 }
