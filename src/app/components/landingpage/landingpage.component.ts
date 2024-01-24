@@ -16,7 +16,7 @@ constructor(private router:Router){
   console.log('constructor invoked')
   setTimeout(()=>{
     console.log('set timeout triggered')
-    //  router.navigate(['/card']);
+    router.navigate(['/card']);
 
   },3000)
   
