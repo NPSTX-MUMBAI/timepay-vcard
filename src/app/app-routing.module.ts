@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AppLayoutComponent } from './layout/app.layout.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 @NgModule({
     imports: [
@@ -9,10 +10,11 @@ import { AppLayoutComponent } from './layout/app.layout.component';
             [
                 {
                     path: '',
-                    redirectTo: 'card',
+                    redirectTo: 'home',
                     pathMatch: 'full',
                     // component: AppLayoutComponent,
                 },
+                {path:'home', component:LandingpageComponent},
                 {
                     path: 'card',
                     loadChildren: () =>
