@@ -1,15 +1,15 @@
-<div  class="container card "  style="text-align: center; height: 6rem;">
-    <img src="/assets/timepaylogo.png"alt="logo" style="height: 2.5rem;">
+<div class="container card" style="text-align: center; height: 6rem">
+    <img src="/assets/timepaylogo.png" alt="logo" style="height: 2.5rem" />
 </div>
 
-<div class="card m-4" style="margin-top: -1rem;">
+<div class="card m-4" style="margin-top: -1rem">
     <p-table
         #dt1
         [value]="contacts"
         dataKey="id"
         [rows]="10"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '100rem' }"
+        [tableStyle]="{ 'min-width': '90rem' }"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['firstName', 'lastName', 'phoneNumber', 'email']"
@@ -34,7 +34,7 @@
                         placeholder="Search keyword"
                     />
                 </span>
-                <p-button label="Add Card" (click)="AddCard()"></p-button>
+                <p-button label="Add Contact" (click)="AddCard()"></p-button>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -80,9 +80,7 @@
                 </td>
                 <td>
                     <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.state.code" style="width: 20px" /> -->
-                    <span class="ml-1 vertical-align-middle">{{
-                        customer.lastName
-                    }}</span>
+                    {{ customer.lastName ? customer.lastName : "-" }}
                 </td>
 
                 <td>
